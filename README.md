@@ -1,8 +1,21 @@
-## Welcome to GitHub Pages
+## OraZon - an Oracle for Amazon
 
-You can use the [editor on GitHub](https://github.com/pritishuplavikar/orazon/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+E-commerce websites like Amazon have millions of products for sale. For answering queries
+about any product, there is a separate question answer section. However, most of the products
+either don’t have this section at all or sometimes fail to answer all the user queries. In such
+cases, the user has to go through many product reviews to be sure that the product satisfies all
+his requirements, before making the purchase. For a popular product on Amazon, the number
+of reviews can be exceptionally huge. The user may be required to spend a lot of time going
+through these huge number of queries before finding relevant reviews and when the user is comparing
+multiple products the case is even more worse.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Our tool OraZon tries to solve this problem by analyzing all the product reviews and suggesting
+top 5 reviews which will answer the user query. We will also generate an answer to the
+user query using all the top reviews.
+
+With our tool, the time spent by the user in making the the product purchase decision can
+be dramatically reduced. Also, suggesting the top product reviews can help make the user a
+more informed purchase decision.
 
 ### Markdown
 
