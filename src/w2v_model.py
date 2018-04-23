@@ -99,10 +99,11 @@ class word2vec:
 						line+=next(f)
 
 
-	def init_word2vect(self):
+	def init_word2vect(self,reload):
 		sentence = []
 		sentence.append(self.word_dict)
-		self.model = gensim.models.Word2Vec(sentence, min_count=1)
+		if reload:
+			self.model = gensim.models.Word2Vec(sentence, min_count=1)
 
 
 	def get_review_dump(self,file_name):
@@ -139,19 +140,27 @@ class word2vec:
 						line+=next(f)
 	
 
-	def dump_data(self, dict_file_name, wordvec_file_name):
+	def dump_data(self, dict_file_name, wordvec_file_name, model_file_name):
 		with open(dict_file_name, 'wb') as f:
 			pickle.dump(self.word_dict, f)
 		with open(wordvec_file_name, 'wb') as f:
 			pickle.dump(self.json_object_wordvec, f)
+		with open(model_file_name, 'wb') as f:
+			pickle.dump(self.model, f)
 
 
 
-	def read_data(self, dict_file_name, wordvec_file_name):
+	def read_data(self, dict_file_name, wordvec_file_name, model_file_name):
 		with open(dict_file_name, 'rb') as f:
+			print("reading dict")
 			self.word_dict = pickle.load(f)
 		with open(wordvec_file_name, 'rb') as f:
+			print("reading word vec")
 			self.json_object_wordvec = pickle.load(f)
+		with open(model_file_name, 'rb') as f:
+			print("reading model")
+			self.model = pickle.load(f)
+		print("done")
 
 	def test_code(self,fp):
 		product_precision = 0.0

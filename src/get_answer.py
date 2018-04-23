@@ -13,46 +13,62 @@ from w2v_model import word2vec
 ob = None
 
 class Driver:
-	#ob = word2vec()
-	def run_w2v(self, folder, fp):
-		category = (folder.split('/'))[3]
-		review_file = os.path.join(folder, category + "_Review.json")
-		question_file = os.path.join(folder, category + "_QA.json")
-		dict_file = os.path.join(folder, category + "_Dict.p")
-		wordvec_file = os.path.join(folder, category + "_WordVec.p")
-		#ob = word2vec()
-		global ob
-		#read the files
-		print ("Reading files", review_file)
-		ob.read_file_review(review_file)
-		ob.read_file_question(question_file)
-		#perform wordvec
-		print ("Performing Word2Vec")
-		ob.init_word2vect()
-		ob.get_review_dump(review_file)
-		#dump
-		print ("Dumping Pickles")
-		ob.dump_data(dict_file, wordvec_file)
-		#test code
-		for p in ob.test_questions:
-			if len(ob.test_questions[p]) == 0:
-				del ob.test_questions[p]
-		print ("Total products with Questions = %d" % len(ob.test_questions))
-		print ("Processing")
-		ob.test_code(fp)
-		#x = ob.predict("does this pedal work on Yamaha P-35 keyboards?",6,[],"B00005ML71")
-		#print x
+    #ob = word2vec()
+    def run_w2v(self, folder, fp):
+        category = (folder.split('/'))[3]
+        review_file = os.path.join(folder, category + "_Review.json")
+        question_file = os.path.join(folder, category + "_QA.json")
+        dict_file = os.path.join(folder, category + "_Dict.p")
+        wordvec_file = os.path.join(folder, category + "_WordVec.p")
+        model_file = os.path.join(folder, category + "_Model.p")
+        #ob = word2vec()
+        global ob
+        if check_file_exists(dict_file,wordvec_file,model_file):
+            print("loading data")
+            ob.read_data(dict_file,wordvec_file,model_file)
+            ob.init_word2vect(False)
+        else:
+        #read the files
+            print("creating data files")
+            print ("Reading files", review_file)
+            ob.read_file_review(review_file)
+            ob.read_file_question(question_file)
+            #perform wordvec
+            print ("Performing Word2Vec")
+            ob.init_word2vect(True)
+            ob.get_review_dump(review_file)
+            #dump
+            print ("Dumping Pickles")
+            ob.dump_data(dict_file, wordvec_file, model_file)
+            #test code
+            for p in ob.test_questions:
+                if len(ob.test_questions[p]) == 0:
+                    del ob.test_questions[p]
+            print ("Total products with Questions = %d" % len(ob.test_questions))
+            print ("Processing")
+            ob.test_code(fp)
+            #x = ob.predict("does this pedal work on Yamaha P-35 keyboards?",6,[],"B00005ML71")
+            #print x
 
 def get_dir_list(path_name):
-	path_name = "ls "+path_name+" > sample.txt"
-	os.system(path_name)
-	f = open('sample.txt','r')
-	res = []
-	for line in f:
-		line = line.strip()
-		res.append(line)
-	os.system("rm -f sample.txt")
-	return res
+    path_name = "ls "+path_name+" > sample.txt"
+    os.system(path_name)
+    f = open('sample.txt','r')
+    res = []
+    for line in f:
+        line = line.strip()
+        res.append(line)
+    os.system("rm -f sample.txt")
+    return res
+
+def check_file_exists(dict_file,wordvec_file,model_file):
+    if not os.path.exists(dict_file) or os.path.getsize(dict_file) == 0:
+        return False
+    if not os.path.exists(wordvec_file) or os.path.getsize(wordvec_file) == 0:
+        return False
+    if not os.path.exists(model_file) or os.path.getsize(model_file) == 0:
+        return False
+    return True
 
 def get_reviews(test_question,num_of_reviews,product_id):
     global ob
@@ -239,7 +255,7 @@ def review_2_sent(question,num_r,p_id):
     answer = formatted_answer(wt_sent_all,wt_sent_pos,wt_sent_neg)
     answer['reviews'] = get_relevant_reviews(reviews,num_r)
     if len(answer['positive']) > 0:
-    	print ("Answer1: ", answer['positive'],"\n")
+        print ("Answer1: ", answer['positive'],"\n")
     if len(answer['negative']) > 0:
-    	print ("Answer2: ", answer['negative'])
+        print ("Answer2: ", answer['negative'])
     return answer
