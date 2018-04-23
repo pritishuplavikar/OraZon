@@ -65,7 +65,9 @@ def get_sentences(reviews):
     for r in reviews:
         lines = r[0].split('.')
         for line in lines:
-            s = line.translate( string.punctuation).strip()
+            translator = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+            line = line.translate(translator)
+            s = line.strip()
             if len(s)>4:
                 sentences.append(s)
                 for word in s.split(' '):
@@ -122,6 +124,9 @@ def get_sentence_vectors(sentences,n_idf):
                 l=[x * sc for x in ob.model[word]]
                 s_vec_lcl.append(l)
                 n_vec_lcl.append(ob.model[word])
+            else:
+                s_vec_lcl.append([0]*100)
+                n_vec_lcl.append([0]*100)
         if len(s_vec_lcl)>0:
             sent_dict[s]=ob.compute_centroid(s_vec_lcl)
             n_sent_dict[s] = ob.compute_centroid(n_vec_lcl)
@@ -130,6 +135,8 @@ def get_sentence_vectors(sentences,n_idf):
 
 def get_q_vec(test_question,n_idf):
     qlist=[]
+    translator = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+    test_question = test_question.translate(translator).strip()
     stp = set(stopwords.words('english'))
     for word in test_question.split(' '):
         word = word.strip(")( []{},")
@@ -145,6 +152,9 @@ def get_q_vec(test_question,n_idf):
                 sc = n_idf[word]*(count_tf(word,qlist)/float(len(qlist)))
             q_w_vec.append([x * sc for x in ob.model[word]])
             q_n_vec.append(ob.model[word])
+        else:
+            q_w_vec.append([0]*100) ## for unknown words
+            q_n_vec.append([0]*100)
     q_vec_w = ob.compute_centroid(q_w_vec)
     q_vec_n = ob.compute_centroid(q_n_vec)
     return q_vec_w,q_vec_n
@@ -203,6 +213,15 @@ def formatted_answer(all_rev,pos,neg):
 
     return {'positive':finalPos,'negative':finalNeg}
 
+def get_relevant_reviews(reviews,k):
+    review_list =[]
+    for r in reviews:
+        review_list.append(r[0])
+        if(len(review_list)==k):
+            break
+    return review_list
+
+
 def review_2_sent(question,num_r,p_id):
     reviews = get_reviews(question,num_r,p_id)
     #print reviews
@@ -218,8 +237,9 @@ def review_2_sent(question,num_r,p_id):
         wt_sent_neg = get_ranked_sent(neg_reviews,question)
         #print_top(wt_sent_neg,5)
     answer = formatted_answer(wt_sent_all,wt_sent_pos,wt_sent_neg)
+    answer['reviews'] = get_relevant_reviews(reviews,num_r)
     if len(answer['positive']) > 0:
     	print ("Answer1: ", answer['positive'],"\n")
     if len(answer['negative']) > 0:
     	print ("Answer2: ", answer['negative'])
-
+    return answer
