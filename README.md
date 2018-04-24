@@ -1,5 +1,7 @@
 # OraZon - an Oracle for Amazon
 
+## Introduction
+
 E-commerce websites like Amazon have millions of products for sale. For answering queries about any product, there is a separate question answer section. However, most of the products either don’t have this section at all or sometimes fail to answer all the user queries. In such cases, the user has to go through many product reviews to be sure that the product satisfies all his requirements, before making the purchase. For a popular product on Amazon, the number of reviews can be exceptionally huge. The user may be required to spend a lot of time going through these huge number of queries before finding relevant reviews and when the user is comparing multiple products the case is even more worse.
 
 Our tool OraZon tries to solve this problem by analyzing all the product reviews and suggesting top 5 reviews which are most relevant to the user query. We are additionally finding top relevant sentences to the user query. As relevant sentences can have both positive and negative opinion polarity, we are generating two answers from top 5 sentences of both the polarities. 
