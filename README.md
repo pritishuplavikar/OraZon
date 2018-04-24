@@ -1,4 +1,4 @@
-<center><img src= "http://www.lighthealing.com/loveoracle/images/orb-copy.jpg"></center>
+[//]: <> <center><img src= "http://www.lighthealing.com/loveoracle/images/orb-copy.jpg"></center>
 
 ## OraZon - an Oracle for Amazon
 
@@ -14,7 +14,7 @@ There has been some previous work in this domain concentrating on getting the to
 
 For similarity measures, [[2]](https://arxiv.org/abs/1703.02507) converts sentences to vectors, using the centroid of all words embeddings in the sentence, and then finds the similarity between vectors.
 
-To generate a natural language answer, [[3]](https://arxiv.org/pdf/1606.05491.pdf) uses a sequence to sequence ([[4]](https://arxiv.org/abs/1409.3215)) model to generate an answer. [[5]](https://arxiv.org/abs/1506.06714) uses such a sequence to sequence model which also takes a context, or in this case, a review into account while generating an answer to the question.    
+To generate a natural language answer, [[3]](https://arxiv.org/abs/1606.05491) uses a sequence to sequence ([[4]](https://arxiv.org/abs/1409.3215)) model to generate an answer. [[5]](https://arxiv.org/abs/1506.06714) uses such a sequence to sequence model which also takes a context, or in this case, a review into account while generating an answer to the question.    
 
 ## Proposed solutions
 
@@ -65,3 +65,12 @@ For approach 2, our model was able to respond to objective questions in terms of
 
 ## Conclusion
 
+
+
+## References
+
+[1] Julian McAuley and Alex Yang. Addressing Complex and Subjective Product-Related Queries with Customer Reviews. CoRR, 2015.
+[2] Matteo Pagliardini, Prakhar Gupta and Martin Jaggi. Unsupervised Learning of Sentence Embeddings using Compositional n-Gram Features. CoRR, 2017.
+[3] Ondřej Dušek and Filip Jurčíček. Sequence-to-Sequence Generation for Spoken Dialogue via Deep Syntax Trees and Strings. CoRR, 2016.
+[4] Ilya Sutskever, Oriol Vinyals and Quoc V. Le. Sequence to Sequence Learning with Neural Networks. CoRR, 2014.
+[5] Alessandro Sordoni, Michel Galley, Michael Auli, Chris Brockett, Yangfeng Ji, Margaret Mitchell, Jian-Yun Nie, Jianfeng Gao and Bill Dolan. A Neural Network Approach to Context-Sensitive Generation of Conversational Responses. CoRR, 2015
