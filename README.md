@@ -14,7 +14,18 @@ For similarity measures, [[2]](https://arxiv.org/abs/1703.02507) converts senten
 
 To generate a natural language answer, [[3]](https://arxiv.org/pdf/1606.05491.pdf) uses a sequence to sequence ([[4]](https://arxiv.org/abs/1409.3215)) model to generate an answer. [[5]](https://arxiv.org/abs/1506.06714) uses such a sequence to sequence model which also takes a context, or in this case, a review into account while generating an answer to the question.    
 
-![](http://www.lighthealing.com/loveoracle/loveoracle.aspx)
+<img src= "http://www.lighthealing.com/loveoracle/loveoracle.aspx">
+
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+
+![](http://www.lighthealing.com/loveoracle/loveoracle.aspx?raw=true)
 
 
 
