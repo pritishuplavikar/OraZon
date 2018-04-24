@@ -69,12 +69,16 @@ We were able to give answers for user queries about the product without the user
 
 ## Ethical implications
 
-The system will give misleading results if the reviews have been attacked by spammers.
+The system will give misleading answers if the reviews have been attacked by spammers.
 
 ## References
 
 [1] Julian McAuley and Alex Yang. Addressing Complex and Subjective Product-Related Queries with Customer Reviews. CoRR, 2015.
+
 [2] Matteo Pagliardini, Prakhar Gupta and Martin Jaggi. Unsupervised Learning of Sentence Embeddings using Compositional n-Gram Features. CoRR, 2017.
+
 [3] Ondřej Dušek and Filip Jurčíček. Sequence-to-Sequence Generation for Spoken Dialogue via Deep Syntax Trees and Strings. CoRR, 2016.
+
 [4] Ilya Sutskever, Oriol Vinyals and Quoc V. Le. Sequence to Sequence Learning with Neural Networks. CoRR, 2014.
+
 [5] Alessandro Sordoni, Michel Galley, Michael Auli, Chris Brockett, Yangfeng Ji, Margaret Mitchell, Jian-Yun Nie, Jianfeng Gao and Bill Dolan. A Neural Network Approach to Context-Sensitive Generation of Conversational Responses. CoRR, 2015
