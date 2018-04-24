@@ -1,6 +1,4 @@
-[//]: <> <center><img src= "http://www.lighthealing.com/loveoracle/images/orb-copy.jpg"></center>
-
-## OraZon - an Oracle for Amazon
+# OraZon - an Oracle for Amazon
 
 E-commerce websites like Amazon have millions of products for sale. For answering queries about any product, there is a separate question answer section. However, most of the products either don’t have this section at all or sometimes fail to answer all the user queries. In such cases, the user has to go through many product reviews to be sure that the product satisfies all his requirements, before making the purchase. For a popular product on Amazon, the number of reviews can be exceptionally huge. The user may be required to spend a lot of time going through these huge number of queries before finding relevant reviews and when the user is comparing multiple products the case is even more worse.
 
