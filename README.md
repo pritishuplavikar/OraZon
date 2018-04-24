@@ -32,9 +32,11 @@ Sequence to sequence models contain an encoder recurrent neural network (RNN) an
 
 The hidden state of the last RNN cell is given as the initial hidden state of the decoder. By doing this, the decoder is able to take the context of the input into account while generating a response. The decoder is trained to predict the next word in the sequence given the initial hidden state.
 
-To generate a natural language answer, we follow the approach mentioned in [[5]](https://arxiv.org/abs/1506.06714). We build a sequence to sequence model with two encoders.
+#### Our model
 
-![Graph of our model exported from TensorFlow](https://i.imgur.com/4TgdPd8.png)
+To generate a natural language answer, we follow the approach mentioned in [[5]](https://arxiv.org/abs/1506.06714). We build a sequence to sequence model with two encoders, one each for the question and a review. Each encoder is a bi-directional LSTM network and an attention mechanism is used at each time step of the context encoder. Following is the graph of our model exported from TensorFlow:
+
+![](https://i.imgur.com/4TgdPd8.png)
 
 
 
