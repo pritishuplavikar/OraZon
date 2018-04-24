@@ -1,3 +1,5 @@
+<center><img src= "http://www.lighthealing.com/loveoracle/images/orb-copy.jpg"></center>
+
 ## OraZon - an Oracle for Amazon
 
 E-commerce websites like Amazon have millions of products for sale. For answering queries about any product, there is a separate question answer section. However, most of the products either don’t have this section at all or sometimes fail to answer all the user queries. In such cases, the user has to go through many product reviews to be sure that the product satisfies all his requirements, before making the purchase. For a popular product on Amazon, the number of reviews can be exceptionally huge. The user may be required to spend a lot of time going through these huge number of queries before finding relevant reviews and when the user is comparing multiple products the case is even more worse.
@@ -14,20 +16,25 @@ For similarity measures, [[2]](https://arxiv.org/abs/1703.02507) converts senten
 
 To generate a natural language answer, [[3]](https://arxiv.org/pdf/1606.05491.pdf) uses a sequence to sequence ([[4]](https://arxiv.org/abs/1409.3215)) model to generate an answer. [[5]](https://arxiv.org/abs/1506.06714) uses such a sequence to sequence model which also takes a context, or in this case, a review into account while generating an answer to the question.    
 
-<img src= "http://www.lighthealing.com/loveoracle/images/orb-copy.jpg">
+## Proposed solutions
 
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
+### Approach 1 - Finding the most similar sentence to the question from the reviews
 
 
-![](http://www.lighthealing.com/loveoracle/images/orb-copy.jpg?raw=true)
 
+### Approach 2 - Generating a natural language answer
 
+#### Sequence to sequence models
+
+Sequence to sequence models contain an encoder recurrent neural network (RNN) and a decoder RNN for end to end mapping of input to response. Following the architecture of a sequence to sequence model.
+
+[Sequence to sequence model](https://i.stack.imgur.com/YjlBt.png)
+
+The hidden state of the last RNN cell is given as the initial hidden state of the decoder. By doing this, the decoder is able to take the context of the input into account while generating a response. The decoder is trained to predict the next word in the sequence given the initial hidden state.
+
+To generate a natural language answer, we follow the approach mentioned in [[5]](https://arxiv.org/abs/1506.06714). We build a sequence to sequence model with two encoders.
+
+[Graph of our model exported from TensorFlow](https://i.imgur.com/4TgdPd8.png)
 
 
 
