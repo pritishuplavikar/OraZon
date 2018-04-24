@@ -20,7 +20,7 @@ To generate a natural language answer, [[3]](https://arxiv.org/abs/1606.05491) u
 
 We used the dataset provided by Prof. Julian McAuley - https://drive.google.com/drive/u/1/folders/0B0lTpQ4opLNDZk52T0JvczRTbW8 for approach 1.
 
-Data for approach 2 can be found at - https://drive.google.com/drive/folders/1rW5H7xzRyRRAECRTI0EsQmfFgwXzYkCk.
+Pre-trained model for approach 2 can be found at - https://drive.google.com/drive/folders/1rW5H7xzRyRRAECRTI0EsQmfFgwXzYkCk.
 
 ## Proposed solutions
 
