@@ -20,7 +20,7 @@ To generate a natural language answer, [[3]](https://arxiv.org/abs/1606.05491) u
 
 ### Approach 1 - Finding the most similar sentence to the question from the reviews
 
-One of the ways to get an answer to the query from the reviews will be to rank the reviews based on their relevance to the query. However, a review can have a lot of junk data too. Not only would a user not want to read this jusn data, it also reduces the relevance of the review if it is taken as a whole. Hence, instead of taking a review as an entity, we break it into its constituent sentences. Ranking these sentences then gives a much better answer to the query.
+One of the ways to get an answer to the query from the reviews will be to rank the reviews based on their relevance to the query. However, a review can have a lot of junk data too. Not only would a user not want to read this junk data, it also reduces the relevance of the review if it is taken as a whole. Hence, instead of taking a review as an entity, we break it into its constituent sentences. Ranking these sentences then gives a much better answer to the query.
 
 To rank the sentences by their relevance to the query, we break down the sentence into unique tokens. We remove stop words from these tokens and calculate the following for each word:
 - word embeddings for the word using word2vec method
@@ -56,16 +56,20 @@ We ran our models on four categories of products, namely - Musical Instruments, 
 
 | Category                        | Precision | Recall |  BLEU  |  WMD  |
 |:-------------------------------:|:---------:|:------:|:------:|:-----:|
-| Musical Instruments             | 74.2      |  48.9  | $160   | 74.2  |
-| Patio, Lawn and Garden Products | 74.2      |  74.2  | 74.2   | 74.2  |
-| Office Products                 | 74.2      |  74.2  | 74.2   | 74.2  |
-| Baby Products                   | 74.2      |  74.2  | 74.2   | 74.2  |
+| Musical Instruments             | 74.2      |  49.6  | 0.68   | 0.49  |
+| Patio, Lawn and Garden Products | 73.1      |  50.7  | 0.66   | 0.54  |
+| Office Products                 | 92.4      |  64.2  | 0.78   | 0.59  |
+| Baby Products                   | 80.2      |  55.3  | 0.73   | 0.61  |
 
-For approach 2, our model was able to respond to objective questions in terms of "yes" and "no", but for subjective questions, it performed poorly.
+For approach 2, our model was able to respond to objective questions in terms of "yes" and "no", but for subjective questions, it performed poorly. This can indicate that the model is able to learn short term dependencies like phrases and grammar.
 
 ## Conclusion
 
+We were able to give answers for user queries about the product without the user having to scroll and find the answers. We also learnt that word embeddings are an effective way to measure similarity between two documents. For generating a natural language answer, we can conclude that sequence to sequence models are a good way to map input and response sequences which have short term dependency, but they can still be improved to generate long answers.
 
+## Ethical implications
+
+The system will give misleading results if the reviews have been attacked by spammers.
 
 ## References
 
