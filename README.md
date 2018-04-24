@@ -20,7 +20,17 @@ To generate a natural language answer, [[3]](https://arxiv.org/pdf/1606.05491.pd
 
 ### Approach 1 - Finding the most similar sentence to the question from the reviews
 
+One of the ways to get an answer to the query from the reviews will be to rank the reviews based on their relevance to the query. However, a review can have a lot of junk data too. Not only would a user not want to read this jusn data, it also reduces the relevance of the review if it is taken as a whole. Hence, instead of taking a review as an entity, we break it into its constituent sentences. Ranking these sentences then gives a much better answer to the query.
 
+To rank the sentences by their relevance to the query, we break down the sentence into unique tokens. We remove stop words from these tokens and calculate the following for each word:
+- word embeddings for the word using word2vec method
+- tf for the word in the given set of sentences
+- idf for the word taking each sentence as a document
+- tf.idf value
+
+Now we estimate the representation of each sentence by finding the weighted centroid of all the vectors. We simply multiply the tf.idf weight of each word to its vector representation and then we take mean of these vectors. 
+
+The final step is to find the cosine similarity of each sentence with the question/query sentence. The one with maximum similarity score is ranked the highest.
 
 ### Approach 2 - Generating a natural language answer
 
@@ -38,40 +48,20 @@ To generate a natural language answer, we follow the approach mentioned in [[5]]
 
 ![](https://i.imgur.com/4TgdPd8.png)
 
+This model helps us to use the encoded hidden states from both the question and the review from which an answer is to be extracted. The attention mechanism additionally helps us to focus on the parts of the review to focus on while generating the answer.
 
+## Evaluation and analysis of results
 
-### Markdown
+We ran our models on four categories of products, namely - Musical Instruments, Patio, Lawn and Garden Products, Office Products and Baby Products. These are the results obtained by using approach 1:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+| Category                        | Precision | Recall |  BLEU  |  WMD  |
+|:-------------------------------:|:---------:|:------:|:------:|:-----:|
+| Musical Instruments             | 74.2      |  48.9  | $160   | 74.2  |
+| Patio, Lawn and Garden Products | 74.2      |  74.2  | 74.2   | 74.2  |
+| Office Products                 | 74.2      |  74.2  | 74.2   | 74.2  |
+| Baby Products                   | 74.2      |  74.2  | 74.2   | 74.2  |
 
-```markdown
-Syntax highlighted code block
+For approach 2, our model was able to respond to objective questions in terms of "yes" and "no", but for subjective questions, it performed poorly.
 
-# Header 1
-## Header 2
-### Header 3
+## Conclusion
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pritishuplavikar/orazon/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Orazon project
-
-
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
