@@ -16,11 +16,11 @@ For similarity measures, [[2]](https://arxiv.org/abs/1703.02507) converts senten
 
 To generate a natural language answer, [[3]](https://arxiv.org/abs/1606.05491) uses a sequence to sequence ([[4]](https://arxiv.org/abs/1409.3215)) model to generate an answer. [[5]](https://arxiv.org/abs/1506.06714) uses such a sequence to sequence model which also takes a context, or in this case, a review into account while generating an answer to the question.    
 
-## Dataset
+## Dataset and our trained model
 
 We used the dataset provided by Prof. Julian McAuley - https://drive.google.com/drive/u/1/folders/0B0lTpQ4opLNDZk52T0JvczRTbW8 for approach 1.
 
-Pre-trained model for approach 2 can be found at - https://drive.google.com/drive/folders/1rW5H7xzRyRRAECRTI0EsQmfFgwXzYkCk.
+Our trained model for approach 2 can be found at - https://drive.google.com/drive/folders/1rW5H7xzRyRRAECRTI0EsQmfFgwXzYkCk.
 
 ## Proposed solutions
 
