@@ -28,13 +28,13 @@ To generate a natural language answer, [[3]](https://arxiv.org/pdf/1606.05491.pd
 
 Sequence to sequence models contain an encoder recurrent neural network (RNN) and a decoder RNN for end to end mapping of input to response. Following the architecture of a sequence to sequence model.
 
-[Sequence to sequence model](https://i.stack.imgur.com/YjlBt.png)
+![Sequence to sequence model](https://i.stack.imgur.com/YjlBt.png)
 
 The hidden state of the last RNN cell is given as the initial hidden state of the decoder. By doing this, the decoder is able to take the context of the input into account while generating a response. The decoder is trained to predict the next word in the sequence given the initial hidden state.
 
 To generate a natural language answer, we follow the approach mentioned in [[5]](https://arxiv.org/abs/1506.06714). We build a sequence to sequence model with two encoders.
 
-[Graph of our model exported from TensorFlow](https://i.imgur.com/4TgdPd8.png)
+![Graph of our model exported from TensorFlow](https://i.imgur.com/4TgdPd8.png)
 
 
 
