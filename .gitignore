@@ -1,0 +1,3 @@
+backup data/*
+backupsrc/*
+data_prep/*
