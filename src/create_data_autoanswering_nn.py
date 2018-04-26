@@ -1,8 +1,26 @@
 import json
 from pprint import pprint
+import get_answer
+import sys
+sys.path.insert(0, '../web')
+import w2v_model
+import _pickle as pickle
+from w2v_model import word2vec
+import numpy as np
+import os
+import time
+import nltk
+from time import gmtime, strftime
 
+
+
+if len(sys.argv) < 2:
+    print ("Error. Please enter the category as argument!")
+    exit(0)
 #Change the category name here
-cat = "Cell_Phones_and_Accessories"
+cat = sys.argv[1]
+
+print (cat)
 
 # Load the data from qa file for above category
 data = json.load(open('../data_prep/data/' + cat+ '/' + cat + '_QA.json'))
@@ -18,17 +36,32 @@ qc = 0
 ac = 0
 rc = 0
 
+ob = word2vec()
+path = "../data_prep/data/"
+res = get_answer.get_dir_list(path)
+print (res)
+get_answer.ob = ob
+driver = get_answer.Driver()
+fp = open(path+"./../PR.txt", 'w')
+driver.run_w2v(path+cat, fp)
+fp.close()
+
 # Iterate the json objects one by one to extract the question and item id
 for eachJsonObject in data:
     itemId = eachJsonObject['asin']
     question = eachJsonObject['question']
     answer = eachJsonObject['answer']
     
+
+    result = get_answer.review_2_sent(question, 4, itemId)
+    topreviews = result['reviews']
+    topsents = result['top']
+    
     try:
-        print('item:'+ itemId + 'question:' + question)
 	# For each item and question, generate answer using the  top 5 relevant sentences from the reviews
-        l = get_answer.review_2_sent(question, 4, itemId)
-        review = str(l[0][0]) + sep + str(l[1][0]) + sep + str(l[2][0]) + sep + str(l[3][0])  + sep
+        l = topsents
+
+        review = str(l[0]) + sep + str(l[1]) + sep + str(l[2]) + sep + str(l[3])  + sep
         review = review.strip('\n')
         review = review.replace('\n','')
         answer = answer.strip('\n')
@@ -49,7 +82,6 @@ for eachJsonObject in data:
             ac += 1
             question_file.write(question + "\n")
             qc += 1
-            print('ItemId: ' + itemId.strip() + ", Question: " + question.rstrip() + ", Answer:" + answer.rstrip() + ', Review: ' + review.rstrip())
     except ValueError:
         #print("ERRORRRR")
         cnt +=1
