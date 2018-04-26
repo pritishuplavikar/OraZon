@@ -9,6 +9,7 @@ import os
 import sys
 import re
 from w2v_model import word2vec
+import math
 
 ob = None
 
@@ -97,7 +98,7 @@ def get_sentences(reviews):
 def get_normalised_idf(idf,length):
     n_idf={}
     for word in idf:
-        n_idf[word] = idf[word]/float(length)
+        n_idf[word] = math.log(length/float(idf[word]+1))
     return n_idf
 
 def get_idf(vocab_freq,sentences):
@@ -246,16 +247,22 @@ def review_2_sent(question,num_r,p_id):
     wt_sent_pos=[]
     wt_sent_neg=[]
     wt_sent_all = get_ranked_sent(reviews,question)
-    if len(pos_reviews)>0:
-        wt_sent_pos = get_ranked_sent(pos_reviews,question)
-        #print_top(wt_sent_pos,5)
-    if len(neg_reviews)>0:
-        wt_sent_neg = get_ranked_sent(neg_reviews,question)
-        #print_top(wt_sent_neg,5)
-    answer = formatted_answer(wt_sent_all,wt_sent_pos,wt_sent_neg)
+    # if len(pos_reviews)>0:
+    #     wt_sent_pos = get_ranked_sent(pos_reviews,question)
+    #     #print_top(wt_sent_pos,5)
+    # if len(neg_reviews)>0:
+    #     wt_sent_neg = get_ranked_sent(neg_reviews,question)
+    #     #print_top(wt_sent_neg,5)
+
+    #answer = formatted_answer(wt_sent_all,wt_sent_pos,wt_sent_neg)
+    answer = {}
     answer['reviews'] = get_relevant_reviews(reviews,num_r)
-    if len(answer['positive']) > 0:
-        print ("Answer1: ", answer['positive'],"\n")
-    if len(answer['negative']) > 0:
-        print ("Answer2: ", answer['negative'])
+    top = []
+    for s in wt_sent_all:
+    	top.append(s[0])
+    answer['top'] = top[:num_r]
+    # if len(answer['positive']) > 0:
+    #     print ("Answer1: ", answer['positive'],"\n")
+    # if len(answer['negative']) > 0:
+    #     print ("Answer2: ", answer['negative'])
     return answer
