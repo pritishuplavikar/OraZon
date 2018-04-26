@@ -14,7 +14,7 @@ from nltk.translate.bleu_score import sentence_bleu
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
-def  predict(productId, question, category):
+def  predict(productId, question, category, no_of_ans = 4):
 	ob = word2vec()
 	path = "../data_prep/data/"
 	res = get_answer.get_dir_list(path)
@@ -25,7 +25,7 @@ def  predict(productId, question, category):
 	driver.run_w2v(path+category, fp)
 	fp.close()
 
-	result = get_answer.review_2_sent(question, 4, productId)
+	result = get_answer.review_2_sent(question, no_of_ans, productId)
 	top5reviews = result['reviews']
 	top5sents = result['top']
 	return top5reviews, top5sents

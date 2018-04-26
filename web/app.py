@@ -29,7 +29,7 @@ def handle_data():
 	question = request.form['question']
 	productId = request.form['productId']
 	category = request.form['category']
-	reviews,sents = predict(productId, question, category)
+	reviews,sents = predict(productId, question, category, 4)
 	answer = 'yes . it has a phono cord that plugs in the amp .'#gen_answer(question, sents)
 	print("HIIIII", answer)
 	return render_template('product_details.html', reviews=reviews, sents=sents, answer=answer)
