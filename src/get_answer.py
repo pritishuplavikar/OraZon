@@ -253,16 +253,10 @@ def review_2_sent(question,num_r,p_id):
     # if len(neg_reviews)>0:
     #     wt_sent_neg = get_ranked_sent(neg_reviews,question)
     #     #print_top(wt_sent_neg,5)
-
-    #answer = formatted_answer(wt_sent_all,wt_sent_pos,wt_sent_neg)
-    answer = {}
-    answer['reviews'] = get_relevant_reviews(reviews,num_r)
     top = []
-    for s in wt_sent_all:
-    	top.append(s[0])
+    for s in  wt_sent_all:
+        top.append(s[0])
+    answer = formatted_answer(wt_sent_all,wt_sent_pos,wt_sent_neg)
+    answer['reviews'] = get_relevant_reviews(reviews,num_r)
     answer['top'] = top[:num_r]
-    # if len(answer['positive']) > 0:
-    #     print ("Answer1: ", answer['positive'],"\n")
-    # if len(answer['negative']) > 0:
-    #     print ("Answer2: ", answer['negative'])
     return answer
