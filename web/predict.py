@@ -31,11 +31,11 @@ def  predict(productId, question, category, no_of_ans = 4):
 	return top5reviews, top5sents
 
 
-def gen_answer(question, top5sents):
+def gen_answer(question, top5sents, category):
 	review = ""
 	for s in top5sents:
 		review += s + ". "
-	d = demo.Demo()
+	d = demo.Demo(category)
 	res = d.predict(question, review)
 	return res
 #predict('B0002F58TG', 'How is the quality of the guitar ?', 'Musical_Instruments')

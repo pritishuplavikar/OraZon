@@ -12,9 +12,10 @@ import random
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
 class Demo:
-    def __init__(self):
+    def __init__(self, cat):
         self.unique_words = pickle.load(open('unique_words.p', 'rb'))
         self.word2idx, self.idx2word, self.vocab_size = self.build_vocabs(self.unique_words)
+        self.cat = cat
 
     def build_vocabs(self, unique_words):
         word2idx = {value:index for index, value in enumerate(unique_words)}
@@ -59,10 +60,19 @@ class Demo:
 
     # Demo
     def predict(self, ques, review):
-        model = "epoch_10_2018-04-23_09_25_56"
+        musical_model = "epoch_10_2018-04-23_09_25_56"
+        office_model = "epoch_10_2018-04-26_04_35_11"
+        if self.cat == 'Office_Products':
+            model = office_model
+        elif self.cat == 'Musical_Instruments':
+            model = musical_model
+        model = musical_model
+        self.cat = 'Musical_Instruments'
         with tf.Session() as demo_sess:
-            saver = tf.train.import_meta_graph('./checkpoints/' + model+'.meta')
-            saver.restore(demo_sess, tf.train.latest_checkpoint('./checkpoints/'))
+            print ("category is: " + self.cat)
+            print ("model is: " + model)
+            saver = tf.train.import_meta_graph('./checkpoints/' + self.cat + '/' + model+'.meta')
+            saver.restore(demo_sess, tf.train.latest_checkpoint('./checkpoints/' + self.cat + '/'))
 
             ques = nltk.word_tokenize(ques)
             ques = [token.lower() for token in ques]
