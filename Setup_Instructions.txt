@@ -1,0 +1,10 @@
+REQUIREMENTS:
+1) Python 3
+2) Tensorflow 1.6
+3) NTLK
+4) Flask
+
+STEPS TO RUN DEMO:
+1) After cloning the repository, download the data into "data_prep" directory by using instructions mentioned in "data_prep/download_data.txt".
+2) Download the "checkpoints" folder containing RNN pretrained models in the "web" directory using instructions mentioned in "web/download_models.txt"
+3) Goto "web" directory, and run the app.py file as "python app.py"
