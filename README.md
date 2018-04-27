@@ -28,7 +28,7 @@ The model files should be placed in the "checkpoints" folder in "gen_ans" direct
 
 ## Proposed solution
 
-### Part 1 - Finding the most similar sentence to the question from the reviews
+### Part 1 - Finding the top relevant reviews/sentences to the question from the reviews
 
 One of the ways to get an answer to the query from the reviews will be to rank the reviews based on their relevance to the query. However, a review can have a lot of junk data too. Not only would a user not want to read this junk data, it also reduces the relevance of the review if it is taken as a whole. Hence, instead of taking a review as an entity, we break it into its constituent sentences. Ranking these sentences then gives a much better answer to the query.
 
@@ -90,7 +90,7 @@ We were able to give answers for user queries about the product without the user
 
 ## Ethical implications
 
-The system will give misleading answers if the reviews have been attacked by spammers.
+The system will give misleading answers along with top reviews/sentences if the reviews have been manipulated by the spammers.
 
 ## References
 
