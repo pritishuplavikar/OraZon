@@ -1,0 +1,1 @@
+Download pretrained model folder named 'checkpoints' from this link into this folder : https://drive.google.com/open?id=19Rz8IBbBnaBW2u0ZIqpmFEFBGkwwP_B0  into the current directory(web)
