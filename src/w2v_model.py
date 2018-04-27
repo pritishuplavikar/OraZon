@@ -248,8 +248,9 @@ class word2vec:
 		heap1 = []
 		assert len(vector) == len(actual)
 		for i in range(0,len_val):
-			result = 1 - spatial.distance.cosine(qa_vec_lcl,vector[i])
-			heap1.append([result,actual[i]])
+			if len(qa_vec_lcl) == len(vector[i]):
+				result = 1 - spatial.distance.cosine(qa_vec_lcl,vector[i])
+				heap1.append([result,actual[i]])
 		heap1.sort(reverse=True)
 		return heap1
 

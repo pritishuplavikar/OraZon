@@ -83,7 +83,7 @@ def get_sentences(reviews):
         lines = r[0].split('.')
         for line in lines:
             translator = str.maketrans(string.punctuation, ' '*len(string.punctuation))
-            line = line.translate(translator)
+            line = line.lower().translate(translator)
             s = line.strip()
             if len(s)>4:
                 sentences.append(s)
@@ -240,7 +240,7 @@ def get_relevant_reviews(reviews,k):
 
 
 def review_2_sent(question,num_r,p_id):
-    reviews = get_reviews(question,num_r,p_id)
+    reviews = get_reviews(question,50,p_id)
     #print reviews
     pos_reviews = get_sentiment(reviews,"Yes")
     neg_reviews = get_sentiment(reviews,"No")

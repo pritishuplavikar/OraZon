@@ -13,6 +13,8 @@ class modelutils:
     def mixture_of_experts(s_list, v_list):
         op = 0.0
         s_denom = sum([math.exp(s) for s in s_list])
+        if len(v_list) == 0:
+            return 0
         maxv = max(v_list)
 
         v_list = [v/float(maxv) for v in v_list]
